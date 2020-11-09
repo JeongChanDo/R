@@ -1,0 +1,29 @@
+library(HSAUR)
+#1988 서울 올림픽 육상 여성 7종 경기 결과
+
+data("heptathlon")
+head(heptathlon)
+
+summary(heptathlon)
+
+
+heptathlon$hurdles = max(heptathlon$hurdles) - heptathlon$hurdles
+heptathlon$run200m = max(heptathlon$run200m) - heptathlon$run200m
+heptathlon$run800m = max(heptathlon$run800m) - heptathlon$run800m
+
+head(heptathlon)
+
+
+library(stats)
+hep.data = heptathlon[,-8] #score를 뺀나머지 데이타
+#주성분 분석 함수 princomp.
+#cor=T는 상관계수 행렬지정, cor=F시 공분산행렬의미.
+#                           여기서 변수 단위가 다르므로 상관계수 행렬 사용
+#scores=T는 주성분 점수 출력하는 옵션
+heptathlon.pca = princomp(hep.data, cor=T, scores=T)
+names(heptathlon.pca)
+heptathlon.pca
+
+summary(heptathlon.pca)
+eig.val = heptathlon.pca$sdev^2
+eig.val
