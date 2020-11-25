@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+from sklearn.metrics import accuracy_score, confusion_matrix, roc_auc_score
+from sklearn.metrics import recall_score, precision_score,roc_curve
+from sklearn.metrics import precision_recall_curve
+
 def fit_clasifiers(gs_clfs, X, y):
     for clf in gs_clfs:
         print(X.shape)
